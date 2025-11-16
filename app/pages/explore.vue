@@ -4,7 +4,7 @@
     :style="{ backgroundImage: `url(${bg_image})` }"
   >
     <!-- Dark overlay for readability -->
-    <div class="absolute inset-0 bg-white/5 backdrop-blur-xs"></div>
+    <div class="absolute inset-0 bg-white/5"></div>
 
     <!-- Content on top -->
     <div
@@ -16,9 +16,7 @@
           <div class="basis-1/4 p-1">
             <div
               class="backdrop-blur-lg w-[350px] bg-white/15 rounded-2xl py-8 px-6 text-center shadow-lg h-full"
-            >
-              test
-            </div>
+            ></div>
           </div>
           <div class="basis-3/4 px-6">
             <Carousel
