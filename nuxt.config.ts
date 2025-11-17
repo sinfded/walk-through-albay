@@ -2,10 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  routeRules: {
-    "/": { prerender: true },
-    "/a/**": { ssr: false },
-  },
+  // routeRules: {
+  //   "/": { prerender: true },
+  //   "/a/**": { ssr: false },
+  // },
+  ssr: true,
+  nitro: { prerender: { crawlLinks: true } },
   modules: [
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
