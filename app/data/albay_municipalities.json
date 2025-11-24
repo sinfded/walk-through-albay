@@ -1,0 +1,292 @@
+{
+  "municipalities": [
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500501000,
+        "adm3_en": "Bacacay",
+        "geo_level": "Mun",
+        "len_crs": 168980,
+        "area_crs": 118837000,
+        "len_km": 168,
+        "area_km2": 118
+      },
+      "id": 500501000,
+      "bg_image_url": "/images/municipalities/500501000.jpg",
+      "description": "It was founded as a barrio in 1649, named after a certain bamboo bagacay, and became an independent one in 1660. Situated on Mt. Mayon's eastern flank, with a 143-kilometer coastline, it falls spiritually under the patronage of St. Rose of Lima and the Lady of the Abandoned. Finally independent in 1807, Bacacay is also home to pristine shores, with its Cagraray Island and many cultural heritage sites."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500502000,
+        "adm3_en": "Camalig",
+        "geo_level": "Mun",
+        "len_crs": 64607,
+        "area_crs": 131594140,
+        "len_km": 64,
+        "area_km2": 131
+      },
+      "id": 500502000,
+      "bg_image_url": "/images/municipalities/500502000.jpg",
+      "description": "Camalig, the oldest town in Albay, was inhabited as early as 200 BC–900 AD by people with advanced cultural, religious, and socio-economic systems. In 1569, Spanish captain Luis Enriquez de Guzman discovered a thriving agricultural settlement where locals stored harvests in grass-roofed huts called kinamalig, likely inspiring the town’s name. Evangelized first by Augustinians and later by Franciscans, Camalig was officially founded in 1579 by Fathers Pablo de Jesus and Bartolome Ruiz, becoming the earliest established town in Albay."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500503000,
+        "adm3_en": "Daraga",
+        "geo_level": "Mun",
+        "len_crs": 85003,
+        "area_crs": 123964735,
+        "len_km": 85,
+        "area_km2": 123
+      },
+      "id": 500503000,
+      "bg_image_url": "/images/municipalities/500503000.jpg",
+      "description": "The town of Daraga, earlier called Cagsawa, was settled by Malay immigrants in the 12th century and colonized by Franciscans in 1587. The eruption of Mayon Volcano in 1814 buried Cagsawa, killing several thousands. Survivors moved to higher ground and established Daraga. It used to be a part of Legazpi City but regained its municipal independence in 1954."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500504000,
+        "adm3_en": "Guinobatan",
+        "geo_level": "Mun",
+        "len_crs": 70955,
+        "area_crs": 175450341,
+        "len_km": 70,
+        "area_km2": 175
+      },
+      "id": 500504000,
+      "bg_image_url": "/images/municipalities/500504000.jpg",
+      "description": "Guinobatan, a municipality in Albay, likely derives its name from the Bicolano word gubatan, meaning forest or wooded area. It evolved from a Camalig visita in 1580 to an independent parish in 1672. The town hosts the September Pabitin festival, reflecting community thanksgiving. It sits as a gateway to Albay’s natural wonders, with an economy largely based on agriculture, including rice and abaca. "
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500505000,
+        "adm3_en": "Jovellar",
+        "geo_level": "Mun",
+        "len_crs": 51395,
+        "area_crs": 80528631,
+        "len_km": 51,
+        "area_km2": 80
+      },
+      "id": 500505000,
+      "bg_image_url": "/images/municipalities/500505000.jpg",
+      "description": "Founded in 1649 as the Distrito Municipal de Quipia, Jovellar was named after Captain-General Joaquín Jovellar y Soler. Originating from a settlement led by Pia along the Donsol River, it became a town in 1811. Through Spanish, American, and Japanese rule, it remained resilient, with an economy rooted in agriculture. Today, Jovellar is a peaceful Albay municipality known for its river, community, and heritage."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500506000,
+        "adm3_en": "Legazpi City",
+        "geo_level": "City",
+        "len_crs": 110050,
+        "area_crs": 157730518,
+        "len_km": 110,
+        "area_km2": 157
+      },
+      "id": 500506000,
+      "bg_image_url": "/images/municipalities/500506000.jpg",
+      "description": "Legazpi started as Sawangan run by Franciscan friars from 1587 until 1616. It was proclaimed as Legazpi in 1856, so named after Miguel Lopez de Legazpi. Its first elected Gobernadorcito was Don Lorenzo Hao. It became a municipality in 1892, attained city status again in 1948 and again in 1959, and Daraga was merged with Legazpi by Presidential Decree in 1973. "
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500507000,
+        "adm3_en": "Libon",
+        "geo_level": "Mun",
+        "len_crs": 89346,
+        "area_crs": 223553052,
+        "len_km": 89,
+        "area_km2": 223
+      },
+      "id": 500507000,
+      "bg_image_url": "/images/municipalities/500507000.jpg",
+      "description": "Libon was founded in 1573 during Juan de Salcedo’s second expedition to the Bicol Region. Located by Bato Lake, it was the first Spanish settlement in the area, marking the start of Christianity’s spread. Libon’s prosperous precolonial society helped establish it as a royal villa and a key part of Bicol history."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500508000,
+        "adm3_en": "Ligao City",
+        "geo_level": "City",
+        "len_crs": 138086,
+        "area_crs": 246893699,
+        "len_km": 138,
+        "area_km2": 246
+      },
+      "id": 500508000,
+      "bg_image_url": "/images/municipalities/500508000.jpg",
+      "description": "Ligao’s name likely derives from the ticau tree, with Spaniards hearing “tigaw” and mispronouncing it as “Ligao.” Some accounts say the name came from “licau,” meaning taking the long route. Its economy centers on agriculture, with rural farming dominating until the 1960s and migration increasing afterward. In 1976 Ligao joined the Bicol River Basin Development Program for area development, and in 2001 it became a component city of Albay, following Republic Act 9008 and a plebiscite."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500509000,
+        "adm3_en": "Malilipot",
+        "geo_level": "Mun",
+        "len_crs": 41389,
+        "area_crs": 43389455,
+        "len_km": 41,
+        "area_km2": 43
+      },
+      "id": 500509000,
+      "bg_image_url": "/images/municipalities/500509000.jpg",
+      "description": "In 1573, under Governor-General Guido de Lavezares, Salcedo led 120 soldiers to pacify the Bikols and founded Libon, Albay, the Spanish authority center in Bicolandia. Malilipot, one of the towns established afterward, retains its rich heritage and is now a Minor Growth Center and satellite of Tabaco City, with a strong agricultural economy and growing cottage industries. "
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500510000,
+        "adm3_en": "Malinao",
+        "geo_level": "Mun",
+        "len_crs": 46404,
+        "area_crs": 109273464,
+        "len_km": 46,
+        "area_km2": 109
+      },
+      "id": 500510000,
+      "bg_image_url": "/images/municipalities/500510000.jpg",
+      "description": "Malinao was founded in 1600 and belonged to the Diocese of Cagsawa until it gained independence in 1619 under Rev. Francisco de Sta. Ana, OFM. Its name comes from an abundance of 'alinao' plant, wherein 'ma' means abundance. In 1916, after a Moro raid abducted seven women, their prayers miraculously sank the boat off Natunawan, inspiring the town's name linked to pure intentions or 'tarahades.'"
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500511000,
+        "adm3_en": "Manito",
+        "geo_level": "Mun",
+        "len_crs": 51614,
+        "area_crs": 94156006,
+        "len_km": 51,
+        "area_km2": 94
+      },
+      "id": 500511000,
+      "bg_image_url": "/images/municipalities/500511000.jpg",
+      "description": "Manito, a peaceful town in Albay, traces its origins to early Bicolano settlers from Bacon, Cagraray Island, and Casiguran. Officially settled in the 19th century, it was named after the abundant nito vine used for weaving. Visayan settlers arrived around 1840, escaping Moro raids. Over time, Manito grew through agriculture and trade but later faced forest depletion in the 1980s. Today, it stands as a symbol of resilience and cultural heritage."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500512000,
+        "adm3_en": "Oas",
+        "geo_level": "Mun",
+        "len_crs": 137809,
+        "area_crs": 244412658,
+        "len_km": 137,
+        "area_km2": 244
+      },
+      "id": 500512000,
+      "bg_image_url": "/images/municipalities/500512000.jpg",
+      "description": "Oas, a coastal town in Albay, originated from early 17th-century Spanish missionary efforts combined with indigenous leadership to form a stable settlement. It evolved from a mission-centered community to a formal municipality with barangays and elected officials. Its history is preserved in church records and regional heritage documents. "
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500513000,
+        "adm3_en": "Pio Duran",
+        "geo_level": "Mun",
+        "len_crs": 64599,
+        "area_crs": 140650411,
+        "len_km": 64,
+        "area_km2": 140
+      },
+      "id": 500513000,
+      "bg_image_url": "/images/municipalities/500513000.jpg",
+      "description": "Pio Duran, named after a notable Bicolano lawyer from Guinobatan, was established in 1963 through Republic Act 3817 signed by President Diosdado Macapagal. Formed from barrios of Guinobatan, Ligao, and Jovellar, it became an independent municipality with its seat in Malacbalac, now known as Pio Duran."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500514000,
+        "adm3_en": "Polangui",
+        "geo_level": "Mun",
+        "len_crs": 68655,
+        "area_crs": 123107278,
+        "len_km": 68,
+        "area_km2": 123
+      },
+      "id": 500514000,
+      "bg_image_url": "/images/municipalities/500514000.jpg",
+      "description": "Polangui, meaning 'to roll' or 'to tumble' in Bicolano, got its name from a rolling boulder encountered by Spanish friars. It is a municipality in Albay known as the 'Spring Festival Capital of the Bicol Region,' celebrated for its culture, agriculture, historical Polangui Church, and natural sites within the Bicol River basin."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500515000,
+        "adm3_en": "Rapu-Rapu",
+        "geo_level": "Mun",
+        "len_crs": 176976,
+        "area_crs": 154418076,
+        "len_km": 176,
+        "area_km2": 154
+      },
+      "id": 500515000,
+      "bg_image_url": "/images/municipalities/500515000.jpg",
+      "description": "Rapu-Rapu, a coastal municipality in Albay, consists of islands including Rapu-Rapu, Batan, and Guinanayan. Established as a municipality in 1901 during the American period, it became part of Albay’s provincial governance, reflecting the region’s evolving island administrative structure."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500516000,
+        "adm3_en": "Sto. Domingo",
+        "geo_level": "Mun",
+        "len_crs": 47894,
+        "area_crs": 54748152,
+        "len_km": 47,
+        "area_km2": 54
+      },
+      "id": 500516000,
+      "bg_image_url": "/images/municipalities/500516000.jpg",
+      "description": "Santo Domingo, formerly Libog, was founded in 1749 and grew under leaders like Diego Castellanos. It survived Moro pirate raids in 1816, inspiring defensive walls and towers still standing. Its historic church, rebuilt after an 1882 fire, features an elaborate balustrade and paired domes. Officially named Sto. Domingo by RA 2520 in 1959, it honors its rich past while embracing the future."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500517000,
+        "adm3_en": "Tabaco City",
+        "geo_level": "City",
+        "len_crs": 100342,
+        "area_crs": 118416958,
+        "len_km": 100,
+        "area_km2": 118
+      },
+      "id": 500517000,
+      "bg_image_url": "/images/municipalities/500517000.jpg",
+      "description": "Tabaco’s history begins in 1587 with Franciscan evangelization of Cagsawa. In 1616, Rev. Fr. Pedro de Alcareso founded a stone church for St. John the Baptist, Tabaco’s patron. The town grew as the region split Albay into Partido de Tabaco (including Legazpi, Daraga, Catanduanes) and Partido de Iraya. It endured calamities, notably the 1811 typhoon, and the 1814 Mayon eruption that devastated nearby areas. Tabaco recovered over a decade. It fell to American forces on February 9, 1900, under Col. Walter Howe, but rebuilt after World War II and thrived again by independence."
+    },
+    {
+      "properties": {
+        "adm1_psgc": 500000000,
+        "adm2_psgc": 500500000,
+        "adm3_psgc": 500518000,
+        "adm3_en": "Tiwi",
+        "geo_level": "Mun",
+        "len_crs": 53708,
+        "area_crs": 126757994,
+        "len_km": 53,
+        "area_km2": 126
+      },
+      "id": 500518000,
+      "bg_image_url": "/images/municipalities/500518000.jpg",
+      "description": "Tiwi, originally Tigbi, a late 1600s barrio of Malinao, Albay, took its name from the Bikolano plant tigbi, later shortened to Tibi and then changed to Tivi before becoming Tiwi in 1696. According to folklore, the hills of Bolo and Putsan formed an islet long before, and a Mount Malinao eruption connected them to the Luzon mainland, thus forming land now home to Poblacion, Libjo, Cararayan, and Naga."
+    }
+  ]
+}

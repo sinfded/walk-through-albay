@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-// No special script needed unless you want to make it reactive
+// No special script needed unless you want to make it reactive-
 </script>
 
 <style scoped>

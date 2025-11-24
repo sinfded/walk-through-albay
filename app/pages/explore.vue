@@ -4,7 +4,7 @@
     :style="{ backgroundImage: `url(${bg_image})` }"
   >
     <!-- Dark overlay for readability -->
-    <div class="absolute inset-0 bg-white/5"></div>
+    <div class="absolute inset-0 bg-black/40"></div>
 
     <!-- Content on top -->
     <div
@@ -15,8 +15,19 @@
         <div class="flex w-full h-[550px]">
           <div class="basis-1/4 p-1">
             <div
-              class="backdrop-blur-lg w-[350px] bg-white/15 rounded-2xl py-8 px-6 text-center shadow-lg h-full"
-            ></div>
+              class="backdrop-blur-lg w-[350px] bg-white/30 rounded-2xl py-8 px-6 text-center shadow-lg h-full text-white"
+            >
+              <div>
+                <span class="albay-font text-5xl"
+                  >{{ currentMun?.properties.adm3_en }},</span
+                ><span class="text-xl font-bold italic uppercase"> Albay</span>
+              </div>
+              <div>
+                <p class="text-justify font-medium indent-8 mt-2">
+                  {{ currentMun?.description }}
+                </p>
+              </div>
+            </div>
           </div>
           <div class="basis-3/4 px-6">
             <Carousel
@@ -31,7 +42,7 @@
                 <CarouselItem
                   v-for="(mun, index) in municipalities"
                   :key="index"
-                  class="pl-1 basis-1/4"
+                  class="pl-1 md:basis-1/3 lg:basis-1/4"
                 >
                   <div class="py-1 px-2">
                     <div
@@ -52,10 +63,19 @@
               </CarouselContent>
             </Carousel>
             <div class="flex gap-2 pl-2 pt-6">
-              <Button variant="outline" size="icon" @click="prevMunicipality">
+              <Button
+                variant="outline"
+                size="icon"
+                @click="prevMunicipality"
+                class="text-white bg-transparent"
+              >
                 <ArrowLeftIcon
               /></Button>
-              <Button variant="outline" size="icon" @click="nextMunicipality"
+              <Button
+                variant="outline"
+                size="icon"
+                @click="nextMunicipality"
+                class="text-white bg-transparent"
                 ><ArrowRightIcon />
               </Button>
             </div>
@@ -67,6 +87,7 @@
 </template>
 
 <script lang="ts" setup>
+import { municipalities as albay_mun } from "~/data/albay_municipalities.json";
 import type { CarouselApi } from "~/components/ui/carousel";
 import {
   ArrowLeft,
@@ -82,6 +103,7 @@ type Municipality = {
   id: number;
   properties: any;
   bg_image_url: string;
+  description: string;
 };
 
 const municipalities = ref<Municipality[]>([]);
@@ -108,19 +130,17 @@ onMounted(() => {
 });
 
 const onLoadMunicipalities = () => {
-  fetch("/geojson/albay_municipalities.json")
-    .then((r) => r.json())
-    .then((data) => {
-      municipalities.value = data.features.map((mun: Municipality) => {
-        return {
-          id: mun.id,
-          properties: mun.properties,
-          bg_image_url: `/images/municipalities/${mun.id}.jpg`,
-        };
-      });
-      currentMun.value = municipalities.value[0];
-      bg_image.value = municipalities.value[0]?.bg_image_url;
-    });
+  municipalities.value = albay_mun.map((mun: Municipality) => {
+    return {
+      id: mun.id,
+      properties: mun.properties,
+      bg_image_url: `/images/municipalities/${mun.id}.jpg`,
+      description: mun.description,
+    };
+  });
+  currentMun.value = municipalities.value[0];
+  bg_image.value = municipalities.value[0]?.bg_image_url;
+  console.table(municipalities.value);
 };
 
 watchOnce(carouselApi, (api) => {
@@ -147,5 +167,11 @@ watchOnce(carouselApi, (api) => {
 .fade-enter-to,
 .fade-leave-from {
   opacity: 1;
+}
+
+.albay-font {
+  font-family: "Bonheur Royale", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 </style>

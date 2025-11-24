@@ -1,10 +1,77 @@
 <script setup lang="ts">
-import type { Layer, Path, Polygon } from "leaflet";
+import type { Layer, Map, Path, Polygon } from "leaflet";
 import { PlusIcon, MinusIcon, HomeIcon, Maximize } from "lucide-vue-next";
+import { municipalities } from "~/data/albay_municipalities.json";
+import L from "leaflet";
 
-const { $L } = useNuxtApp();
-const map = ref<any>(null);
-let geojsonLayer: any = null;
+type Site = {
+  name: string;
+  municipality_id: number;
+  municipality_name: string;
+  category: string;
+  site_images: any;
+  coordinates: any;
+};
+
+const props = defineProps(["site"]);
+
+const map = ref<L.Map | null>(null);
+const geojson = ref(undefined);
+let geoJsonLayer: any = null;
+
+const loadMunicipalities = () => {
+  fetch("/geojson/albay_municipalities.geojson")
+    .then((r) => r.json())
+    .then((data) => {
+      geoJsonLayer = L.geoJSON(data, {
+        style: defaultStyle,
+        onEachFeature: (feature, layer) => {
+          const polygonLayer = layer as Polygon;
+
+          // Tooltip
+          layer.bindTooltip(feature.properties.adm3_en, {
+            sticky: true,
+            direction: "top",
+          });
+
+          // Mouse enter → highlight
+          layer.on("mouseover", () => {
+            polygonLayer.setStyle(highlightStyle);
+          });
+
+          // Mouse leave → reset
+          layer.on("mouseout", () => {
+            geoJsonLayer.resetStyle(layer);
+          });
+
+          // Click → zoom into the municipality
+          onCityClick(layer);
+        },
+      }).addTo(map.value as L.Map);
+    });
+};
+
+const zoomIn = () => {
+  if (map.value) map.value.zoomIn();
+};
+
+const zoomOut = () => {
+  if (map.value) map.value.zoomOut();
+};
+
+const maximize = () => {
+  if (map.value) map.value.setView([13.2437, 123.7238], 11);
+};
+
+const onCityClick = (layer: Layer) => {
+  const polygonLayer = layer as Polygon;
+  layer.on("click", () => {
+    if (map.value)
+      map.value.fitBounds(polygonLayer.getBounds(), {
+        padding: [20, 20],
+      });
+  });
+};
 
 // Path style for normal polygons
 const defaultStyle = {
@@ -22,111 +89,37 @@ const highlightStyle = {
   fillOpacity: 0.5,
 };
 
-onMounted(async () => {
-  map.value = $L
-    .map("map", { zoomControl: false })
-    .setView([13.2437, 123.7238], 11);
+const onMapReady = (leafletMap: L.Map) => {
+  map.value = leafletMap;
+};
 
-  $L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-  }).addTo(map.value);
-
+onMounted(() => {
   loadMunicipalities();
+  console.log(geoJsonLayer);
 });
-
-const zoomIn = () => {
-  if (map.value) map.value.zoomIn();
-};
-
-const zoomOut = () => {
-  if (map.value) map.value.zoomOut();
-};
-
-const maximize = () => {
-  if (map.value) map.value.setView([13.2437, 123.7238], 11);
-};
-
-const loadMunicipalities = () => {
-  fetch("/geojson/albay_municipalities.json")
-    .then((r) => r.json())
-    .then((data) => {
-      geojsonLayer = $L
-        .geoJSON(data, {
-          style: defaultStyle,
-
-          onEachFeature: (feature, layer) => {
-            const polygonLayer = layer as Polygon;
-
-            // Tooltip
-            layer.bindTooltip(feature.properties.adm3_en, {
-              sticky: true,
-              direction: "top",
-            });
-
-            // Mouse enter → highlight
-            layer.on("mouseover", () => {
-              polygonLayer.setStyle(highlightStyle);
-            });
-
-            // Mouse leave → reset
-            layer.on("mouseout", () => {
-              geojsonLayer.resetStyle(layer);
-            });
-
-            // Click → zoom into the municipality
-            onCityClick(layer);
-          },
-        })
-        .addTo(map.value);
-    });
-};
-
-const onCityClick = (layer: Layer) => {
-  const polygonLayer = layer as Polygon;
-  layer.on("click", () => {
-    map.value.fitBounds(polygonLayer.getBounds(), {
-      padding: [20, 20],
-    });
-  });
-};
 </script>
 
 <template>
-  <div class="w-screen h-screen relative">
-    <div id="map" class="w-full h-full absolute z-10"></div>
-    <!-- Zoom Controls -->
-    <div class="absolute top-4 right-4 z-50 flex gap-2">
-      <NuxtLink to="/">
-        <Button variant="outline" size="icon"> <HomeIcon /></Button>
-      </NuxtLink>
-      <DropdownMenu>
-        <DropdownMenuTrigger as-child>
-          <Button variant="outline" class="min-w-56"> Albay </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent class="w-56" align="center">
-          <DropdownMenuLabel>Municipalities/Cities</DropdownMenuLabel>
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
-              Profile
-              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Billing
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Settings
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Keyboard shortcuts
-              <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-    <div class="absolute bottom-4 right-4 z-50 flex gap-2">
+  <div class="w-full h-full p-6 rounded-lg relative">
+    <LMap
+      ref="map"
+      class="rounded-lg z-10"
+      :zoom="11"
+      :center="[13.2437, 123.7238]"
+      :use-global-leaflet="true"
+      :options="{
+        zoomControl: false,
+      }"
+      @ready="onMapReady"
+    >
+      <LTileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        layer-type="base"
+        name="OpenStreetMap"
+      />
+    </LMap>
+    <div class="absolute top-8 right-8 z-50 flex gap-2">
       <div class="flex">
         <Button
           variant="outline"

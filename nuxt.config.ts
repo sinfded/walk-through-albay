@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxtjs/supabase",
     "@nuxt/fonts",
+    "@nuxtjs/leaflet",
   ],
   shadcn: {
     /**
