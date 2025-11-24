@@ -1,7 +1,3 @@
-<script lang="ts">
-export const description = "A simple email-only login page.";
-</script>
-
 <script setup lang="ts"></script>
 
 <template>
