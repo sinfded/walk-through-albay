@@ -2,203 +2,222 @@
   <Dialog :modal="true" :open="modal">
     <form>
       <DialogContent
-        class="overflow-hidden p-0 max-h-[600px] md:max-w-[800px] lg:max-w-[900px]"
+        class="overflow-hidden flex p-0 max-h-[600px] md:max-w-[900px] lg:max-w-[1000px]"
         :show-close-button="false"
       >
-        <SidebarProvider class="items-start">
-          <Sidebar collapsible="none" class="hidden md:flex">
-            <SidebarContent
-              class="p-4 flex flex-col justify-between max-h-[600px]"
-            >
-              <FieldSet>
-                <FieldLegend>Edit Site</FieldLegend>
-                <FieldDescription
-                  >Edit the information of this site.</FieldDescription
-                >
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel for="name"> Municipality </FieldLabel>
-                    <Select
-                      v-model:model-value="siteData.municipality_id"
-                      @update:model-value="selectMunicipality"
-                    >
-                      <SelectTrigger class="bg-white">
-                        <SelectValue placeholder="Select a municipality" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem
-                          v-for="(mun, idm) in municipalities"
-                          :key="idm"
-                          :value="mun.id"
-                        >
-                          {{ mun.properties.adm3_en }}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field>
-                    <FieldLabel for="name"> Category </FieldLabel>
-                    <Select v-model:model-value="siteData.category">
-                      <SelectTrigger class="bg-white">
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem
-                          v-for="(cat, idc) in categories"
-                          :key="idc"
-                          :value="cat.value"
-                        >
-                          {{ cat.text }}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field>
-                    <FieldLabel for="name"> Name </FieldLabel>
-                    <Input
-                      v-model:model-value="siteData.name"
-                      id="name"
-                      autocomplete="off"
-                      class="bg-white"
-                      placeholder="Name of the site"
-                    />
-                  </Field>
-
-                  <Field>
-                    <FieldLabel for="coordinates"> Coordinates </FieldLabel>
-                    <div class="flex gap-2">
-                      <Input
-                        id="coordinates"
-                        autocomplete="off"
-                        placeholder="Latitude"
-                        class="bg-white"
-                        v-model:model-value="siteData.coordinates.latitude"
-                        @update:model-value="cleanCoordinates('latitude')"
-                      />
-                      <Input
-                        id="coordinates"
-                        autocomplete="off"
-                        placeholder="Longtitude"
-                        class="bg-white"
-                        v-model:model-value="siteData.coordinates.longitude"
-                        @update:model-value="cleanCoordinates('longitude')"
-                      />
-                    </div>
-                  </Field>
-                </FieldGroup>
-              </FieldSet>
-
-              <DialogFooter>
-                <DialogClose as-child>
-                  <Button variant="outline" @click="clearData"> Cancel </Button>
-                </DialogClose>
-
-                <Button @click="saveSiteData" type="submit" :disabled="loading">
-                  <LoaderCircleIcon class="animate-spin" v-if="loading" />
-                  Save changes
-                </Button>
-              </DialogFooter>
-            </SidebarContent>
-          </Sidebar>
-          <main class="flex h-[580px] flex-1 flex-col overflow-hidden">
-            <header
-              class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
-            >
-              <div class="flex items-center gap-2 px-4">
-                <span>Site Images</span>
-              </div>
-            </header>
-            <div class="grid grid-cols-3 gap-4 p-4 pt-0">
-              <div
-                v-if="siteData.site_images.front"
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+        <div class="w-[280px] bg-muted overflow-auto">
+          <div class="p-4 flex flex-col justify-between max-h-[600px]">
+            <FieldSet class="pb-4">
+              <FieldLegend>Edit Site</FieldLegend>
+              <FieldDescription
+                >Edit the information of this site.</FieldDescription
               >
-                <img
-                  :src="siteData.site_images.front"
-                  alt="Front Site Image"
-                  class="w-full h-full rounded-xl object-cover"
-                />
-              </div>
-              <div
-                v-if="siteData.site_images.left"
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
-              >
-                <img
-                  :src="siteData.site_images.left"
-                  alt="Left Site Image"
-                  class="w-full h-full rounded-xl object-cover"
-                />
-              </div>
-              <div
-                v-if="siteData.site_images.right"
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
-              >
-                <img
-                  :src="siteData.site_images.right"
-                  alt="Right Site Image"
-                  class="w-full h-full rounded-xl object-cover"
-                />
-              </div>
-              <div
-                v-if="siteData.site_images.rear"
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
-              >
-                <img
-                  :src="siteData.site_images.rear"
-                  alt="Rear Site Image"
-                  class="w-full h-full rounded-xl object-cover"
-                />
-              </div>
-              <div
-                v-if="siteData.site_images.interior"
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
-              >
-                <img
-                  :src="siteData.site_images.interior"
-                  alt="Interior Site Image"
-                  class="w-full h-full rounded-xl object-cover"
-                />
-              </div>
-              <div
-                class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
-              >
-                <div
-                  @click="openFilePicker"
-                  class="flex flex-col p-2 h-full hover:cursor-pointer"
-                >
+              <FieldGroup>
+                <Field>
+                  <FieldLabel for="name"> Municipality </FieldLabel>
                   <Select
-                    class="w-full"
-                    v-model:model-value="selectedElevation"
+                    v-model:model-value="siteData.municipality_id"
+                    @update:model-value="selectMunicipality"
                   >
-                    <SelectTrigger class="bg-white w-full">
-                      <SelectValue placeholder="Select a view" />
+                    <SelectTrigger class="bg-white">
+                      <SelectValue placeholder="Select a municipality" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem
-                        v-for="(elev, ide) in elevations"
-                        :key="ide"
-                        :value="elev.value"
+                        v-for="(mun, idm) in municipalities"
+                        :key="idm"
+                        :value="mun.id"
                       >
-                        {{ elev.text }}
+                        {{ mun.properties.adm3_en }}
                       </SelectItem>
                     </SelectContent>
                   </Select>
-                  <div class="flex justify-center items-center grow">
-                    <ImageUpIcon class="w-20 h-20 text-gray-300" />
-                  </div>
-                </div>
+                </Field>
+                <Field>
+                  <FieldLabel for="name"> Category </FieldLabel>
+                  <Select v-model:model-value="siteData.category">
+                    <SelectTrigger class="bg-white">
+                      <SelectValue placeholder="Select a category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem
+                        v-for="(cat, idc) in categories"
+                        :key="idc"
+                        :value="cat.value"
+                      >
+                        {{ cat.text }}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field>
+                  <FieldLabel for="name"> Name </FieldLabel>
+                  <Input
+                    v-model:model-value="siteData.name"
+                    id="name"
+                    autocomplete="off"
+                    class="bg-white"
+                    placeholder="Name of the site"
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel for="location"> Location </FieldLabel>
+                  <Textarea
+                    id="location"
+                    placeholder="Type the site location here."
+                    class="bg-white"
+                    v-model:model-value="siteData.location"
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel for="description"> Description </FieldLabel>
+                  <Textarea
+                    id="description"
+                    placeholder="Type the site description here."
+                    class="bg-white"
+                    v-model:model-value="siteData.description"
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel for="recognized_by"> Recognized by </FieldLabel>
+                  <Input
+                    v-model:model-value="siteData.recognized_by"
+                    id="recognized_by"
+                    autocomplete="off"
+                    class="bg-white"
+                  />
+                </Field>
 
-                <input
-                  ref="fileInput"
-                  type="file"
-                  accept="image/*"
-                  class="hidden"
-                  @change="handleFileChange"
-                />
-              </div>
+                <Field>
+                  <FieldLabel for="coordinates"> Coordinates </FieldLabel>
+                  <div class="flex gap-2">
+                    <Input
+                      id="coordinates"
+                      autocomplete="off"
+                      placeholder="Latitude"
+                      class="bg-white"
+                      v-model:model-value="siteData.coordinates.latitude"
+                      @update:model-value="cleanCoordinates('latitude')"
+                    />
+                    <Input
+                      id="coordinates"
+                      autocomplete="off"
+                      placeholder="Longtitude"
+                      class="bg-white"
+                      v-model:model-value="siteData.coordinates.longitude"
+                      @update:model-value="cleanCoordinates('longitude')"
+                    />
+                  </div>
+                </Field>
+              </FieldGroup>
+            </FieldSet>
+          </div>
+        </div>
+        <main class="flex h-[580px] flex-1 flex-col overflow-hidden">
+          <header
+            class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+          >
+            <div class="flex items-center justify-between gap-2 px-4 w-full">
+              <span>Site Images</span>
             </div>
-          </main>
-        </SidebarProvider>
+            <DialogFooter class="px-4">
+              <DialogClose as-child>
+                <Button variant="outline" @click="clearData"> Cancel </Button>
+              </DialogClose>
+
+              <Button @click="saveSiteData" type="submit" :disabled="loading">
+                <LoaderCircleIcon class="animate-spin" v-if="loading" />
+                Save changes
+              </Button>
+            </DialogFooter>
+          </header>
+          <div class="grid grid-cols-3 gap-4 p-4 pt-0">
+            <div
+              v-if="siteData.site_images.front"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <img
+                :src="siteData.site_images.front"
+                alt="Front Site Image"
+                class="w-full h-full rounded-xl object-cover"
+              />
+            </div>
+            <div
+              v-if="siteData.site_images.left"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <img
+                :src="siteData.site_images.left"
+                alt="Left Site Image"
+                class="w-full h-full rounded-xl object-cover"
+              />
+            </div>
+            <div
+              v-if="siteData.site_images.right"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <img
+                :src="siteData.site_images.right"
+                alt="Right Site Image"
+                class="w-full h-full rounded-xl object-cover"
+              />
+            </div>
+            <div
+              v-if="siteData.site_images.rear"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <img
+                :src="siteData.site_images.rear"
+                alt="Rear Site Image"
+                class="w-full h-full rounded-xl object-cover"
+              />
+            </div>
+            <div
+              v-if="siteData.site_images.interior"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <img
+                :src="siteData.site_images.interior"
+                alt="Interior Site Image"
+                class="w-full h-full rounded-xl object-cover"
+              />
+            </div>
+            <div
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+            >
+              <div
+                @click="openFilePicker"
+                class="flex flex-col p-2 h-full hover:cursor-pointer"
+              >
+                <Select class="w-full" v-model:model-value="selectedElevation">
+                  <SelectTrigger class="bg-white w-full">
+                    <SelectValue placeholder="Select a view" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem
+                      v-for="(elev, ide) in elevations"
+                      :key="ide"
+                      :value="elev.value"
+                    >
+                      {{ elev.text }}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <div class="flex justify-center items-center grow">
+                  <ImageUpIcon class="w-20 h-20 text-gray-300" />
+                </div>
+              </div>
+
+              <input
+                ref="fileInput"
+                type="file"
+                accept="image/*"
+                class="hidden"
+                @change="handleFileChange"
+              />
+            </div>
+          </div>
+        </main>
       </DialogContent>
     </form>
   </Dialog>
@@ -225,6 +244,9 @@ type Site = {
   municipality_id: number;
   municipality_name: string;
   category: string;
+  description: string;
+  recognized_by: string;
+  location: string;
   site_images: {
     front: string;
     left: string;
@@ -295,6 +317,9 @@ const siteData = ref<Site>({
   municipality_id: 0,
   municipality_name: "",
   category: "",
+  description: "",
+  recognized_by: "",
+  location: "",
   site_images: {
     front: "",
     left: "",

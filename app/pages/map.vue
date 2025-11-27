@@ -98,7 +98,11 @@
       </div>
     </div>
     <ClientOnly>
-      <Map :site="selectedSite" />
+      <Map
+        :site="selectedSite"
+        :selected-city-sites="sites"
+        @select-city="onSelectCity"
+      />
     </ClientOnly>
   </div>
 </template>
@@ -137,8 +141,6 @@ const supabase = useSupabaseClient();
 
 const selectMunicipality = (munId: number) => {
   selectedMun.value = municipalities.find((mun) => mun.id == munId);
-
-  console.log(selectedMun.value);
 };
 
 const onLoadSites = async () => {
@@ -151,8 +153,11 @@ const onLoadSites = async () => {
     if (error) console.error(error);
 
     sites.value = data as Site[];
-    console.log(sites.value);
   }
+};
+
+const onSelectCity = (id: number) => {
+  selectMunicipality(id);
 };
 
 const zoomInSite = (site: Site) => {
@@ -165,7 +170,6 @@ onMounted(() => {
 });
 
 watch(selectedMun, (val) => {
-  console.log(val);
   onLoadSites();
 });
 </script>

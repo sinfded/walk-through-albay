@@ -3,7 +3,12 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center">
-        <img src="/logo.png" alt="Logo" class="h-10 w-auto" />
+        <img
+          @dblclick="goToLogin"
+          src="/logo.png"
+          alt="Logo"
+          class="h-10 w-auto"
+        />
         <span class="ml-4 font-bold text-xl italic uppercase text-white"
           >Walk Through Albay</span
         >
@@ -37,6 +42,10 @@
 
 <script setup lang="ts">
 // No special script needed unless you want to make it reactive-
+
+const goToLogin = () => {
+  useRouter().push("/a/login");
+};
 </script>
 
 <style scoped>

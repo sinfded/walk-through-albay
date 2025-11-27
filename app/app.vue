@@ -9,6 +9,7 @@
 import "vue-sonner/style.css";
 useHead({
   link: [{ rel: "icon", type: "image/png", href: "/logo.png" }],
+  title: "Walk Through Albay",
 });
 </script>
 

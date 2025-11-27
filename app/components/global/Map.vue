@@ -13,9 +13,11 @@ type Site = {
   coordinates: any;
 };
 
-const props = defineProps(["site"]);
+const props = defineProps(["site", "selectedCitySites"]);
+const emit = defineEmits(["selectCity"]);
 
 const map = ref<L.Map | null>(null);
+const mapRef = ref<any>(null);
 const geojson = ref(undefined);
 let geoJsonLayer: any = null;
 
@@ -66,10 +68,12 @@ const maximize = () => {
 const onCityClick = (layer: Layer) => {
   const polygonLayer = layer as Polygon;
   layer.on("click", () => {
-    if (map.value)
+    if (map.value) {
       map.value.fitBounds(polygonLayer.getBounds(), {
         padding: [20, 20],
       });
+      emit("selectCity", polygonLayer.feature?.id);
+    }
   });
 };
 
@@ -89,20 +93,23 @@ const highlightStyle = {
   fillOpacity: 0.5,
 };
 
-const onMapReady = (leafletMap: L.Map) => {
-  map.value = leafletMap;
+const onMapReady = () => {
+  if (mapRef.value?.leafletObject) {
+    map.value = mapRef.value?.leafletObject;
+  }
 };
 
 onMounted(() => {
   loadMunicipalities();
-  console.log(geoJsonLayer);
 });
+
+watch(props, () => {}, { deep: true, immediate: true });
 </script>
 
 <template>
   <div class="w-full h-full p-6 rounded-lg relative">
     <LMap
-      ref="map"
+      ref="mapRef"
       class="rounded-lg z-10"
       :zoom="11"
       :center="[13.2437, 123.7238]"

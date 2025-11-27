@@ -39,7 +39,7 @@
           <hr class="opacity-60" />
 
           <!-- List -->
-          <div class="grid grid-cols-4 gap-6 p-6">
+          <div class="grid lg:grid-cols-4 xl:grid-cols-5 gap-6 p-6">
             <div
               v-for="site in sites"
               :key="site.name"
@@ -51,13 +51,36 @@
               >
                 {{ site.name }}
               </div>
-              <div class="absolute top-0 right-0 p-2">
+              <div class="absolute top-0 right-0 p-2 flex gap-2">
                 <Button
                   @click="editSiteData(site)"
                   variant="outline"
                   size="icon"
                   ><Settings2Icon class="w-8 h-8"
                 /></Button>
+                <AlertDialog>
+                  <AlertDialogTrigger as-child>
+                    <Button variant="outline" size="icon" class="text-red-500"
+                      ><Trash2Icon class="w-8 h-8" /></Button
+                  ></AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle
+                        >Are you absolutely sure?</AlertDialogTitle
+                      >
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete this site's data from our servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction @click="deleteSiteData(site.id)"
+                        >Continue</AlertDialogAction
+                      >
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
           </div>
@@ -75,7 +98,12 @@
 
 <script lang="ts" setup>
 import { municipalities } from "~/data/albay_municipalities.json";
-import { LogOutIcon, Settings2Icon, SettingsIcon } from "lucide-vue-next";
+import {
+  LogOutIcon,
+  Settings2Icon,
+  SettingsIcon,
+  Trash2Icon,
+} from "lucide-vue-next";
 
 definePageMeta({
   middleware: "auth",
@@ -86,8 +114,22 @@ type Site = {
   municipality_id: number;
   municipality_name: string;
   category: string;
-  site_images: any;
-  coordinates: any;
+  description: string;
+  recognized_by: string;
+  location: string;
+  site_images: {
+    front: string;
+    left: string;
+    right: string;
+    rear: string;
+    interior: string;
+  };
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  id: number;
+  created_at: string;
 };
 
 const supabase = useSupabaseClient();
@@ -123,6 +165,13 @@ const onMunicipalityChange = async () => {
 const editSiteData = (site: Site) => {
   editSiteModal.value = true;
   selectedSite.value = site;
+};
+
+const deleteSiteData = async (siteId: number) => {
+  const { error } = await supabase.from("sites").delete().eq("id", siteId);
+
+  if (error) console.error(error);
+  onMunicipalityChange();
 };
 
 const signOut = async () => {
