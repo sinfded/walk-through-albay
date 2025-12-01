@@ -134,53 +134,68 @@
           <div class="grid grid-cols-3 gap-4 p-4 pt-0">
             <div
               v-if="siteData.site_images.front"
-              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted relative"
             >
               <img
                 :src="siteData.site_images.front"
                 alt="Front Site Image"
                 class="w-full h-full rounded-xl object-cover"
               />
+              <Badge class="absolute top-1 right-1" variant="secondary"
+                >Front View</Badge
+              >
             </div>
             <div
               v-if="siteData.site_images.left"
-              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted relative"
             >
               <img
                 :src="siteData.site_images.left"
                 alt="Left Site Image"
                 class="w-full h-full rounded-xl object-cover"
               />
+              <Badge class="absolute top-1 right-1" variant="secondary"
+                >Left View</Badge
+              >
             </div>
             <div
               v-if="siteData.site_images.right"
-              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted relative"
             >
               <img
                 :src="siteData.site_images.right"
                 alt="Right Site Image"
                 class="w-full h-full rounded-xl object-cover"
               />
+              <Badge class="absolute top-1 right-1" variant="secondary"
+                >Right View</Badge
+              >
             </div>
             <div
               v-if="siteData.site_images.rear"
-              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted relative"
             >
               <img
                 :src="siteData.site_images.rear"
                 alt="Rear Site Image"
                 class="w-full h-full rounded-xl object-cover"
               />
+              <Badge class="absolute top-1 right-1" variant="secondary"
+                >Rear View</Badge
+              >
             </div>
             <div
               v-if="siteData.site_images.interior"
-              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"
+              class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted relative"
             >
               <img
                 :src="siteData.site_images.interior"
                 alt="Interior Site Image"
                 class="w-full h-full rounded-xl object-cover"
               />
+              <Badge class="absolute top-1 right-1" variant="secondary"
+                >Interior View</Badge
+              >
             </div>
             <div
               class="aspect-square max-w-[200px] max-h-[200px] rounded-xl bg-muted"

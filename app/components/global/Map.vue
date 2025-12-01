@@ -121,7 +121,7 @@ const zoomInSite = (lat: number, long: number, site_id: number) => {
     geoJsonLayer.value = null;
   }
   map.value.setView([lat, long], 20, { animate: true });
-  console.log(selectedSite.value);
+  console.log(props.selectedCitySites);
 
   if (!selectedSite.value) emit("selectSite", site_id);
 };
@@ -293,12 +293,11 @@ watch(
               >
                 <div class="h-full py-1">
                   <div
-                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex items-center justify-center"
+                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
                     :style="{ backgroundImage: `url(${img})` }"
                   >
-                    <span
-                      class="capitalize text-2xl font-medium text-muted-foreground opacity-30"
-                      >{{ key }}</span
+                    <Badge class="capitalize mt-1 mr-1" variant="secondary"
+                      >{{ key }} View</Badge
                     >
                   </div>
                 </div>

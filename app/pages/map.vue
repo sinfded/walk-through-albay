@@ -213,6 +213,7 @@ const selectMunicipality = (munId: number) => {
 };
 
 const onLoadSites = async () => {
+  sites.value = [];
   if (selectedMun.value) {
     const { data, error } = await supabase
       .from("sites")
@@ -236,13 +237,13 @@ const onSelectCity = (id: number) => {
   selectedSite.value = null;
 };
 
-const onSelectSite = (site_id: number) => {
+const onSelectSite = async (site_id: number) => {
   const site = sites.value.find((site) => site.id == site_id);
   console.log(site_id);
   if (site) {
     selectedSite.value = site;
     selectMunicipality(site.municipality_id);
-    onLoadSites();
+    await onLoadSites();
   }
 };
 
