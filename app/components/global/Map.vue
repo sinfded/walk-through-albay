@@ -121,7 +121,9 @@ const zoomInSite = (lat: number, long: number, site_id: number) => {
     geoJsonLayer.value = null;
   }
   map.value.setView([lat, long], 20, { animate: true });
-  console.log(props.selectedCitySites);
+  selectedSite.value = props.selectedCitySites.find(
+    (site: Site) => site.id == site_id
+  );
 
   if (!selectedSite.value) emit("selectSite", site_id);
 };
