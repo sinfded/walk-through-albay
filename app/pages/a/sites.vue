@@ -35,7 +35,9 @@
         <div v-for="(sites, category) in groupedSites" :key="category">
           <!-- Separator -->
           <hr class="opacity-60" />
-          <h2 class="text-xl font-bold my-4 ml-6 capitalize">{{ category }}</h2>
+          <h2 class="text-xl font-bold my-4 ml-6 capitalize">
+            {{ categories.find((cat) => cat.value == category)?.text }}
+          </h2>
           <hr class="opacity-60" />
 
           <!-- List -->
@@ -131,6 +133,33 @@ type Site = {
   id: number;
   created_at: string;
 };
+
+const categories = [
+  {
+    text: "Church",
+    value: "church",
+  },
+  {
+    text: "Gabaldon",
+    value: "gabaldon",
+  },
+  {
+    text: "School",
+    value: "school",
+  },
+  {
+    text: "Municipal Hall",
+    value: "municipal_hall",
+  },
+  {
+    text: "Ancestral House",
+    value: "ancestral_house",
+  },
+  {
+    text: "Cimburrio",
+    value: "cimburrio",
+  },
+];
 
 const supabase = useSupabaseClient();
 

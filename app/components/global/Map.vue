@@ -190,7 +190,6 @@ watch(
 
       zoomInSite(lat, long, props.site.id);
       selectedSite.value = props.site;
-      console.log(selectedSite.value);
     }
     if (props.municipality_id) {
       if (geoJsonLayer.value) {
