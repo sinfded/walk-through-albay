@@ -38,18 +38,18 @@
                 loop: true,
               }"
             >
-              <CarouselContent class="-ml-1 min-h-[450px] items-center">
+              <CarouselContent class="-ml-1 min-h-[400px] items-center">
                 <CarouselItem
                   v-for="(mun, index) in municipalities"
                   :key="index"
-                  class="pl-1 md:basis-1/3 lg:basis-1/4"
+                  class="pl-1 md:basis-1/4 lg:basis-1/5"
                 >
                   <div class="py-1 px-2">
                     <div
                       class="relative rounded-2xl py-8 px-6 text-center shadow-lg bg-center bg-cover bg-no-repeat"
                       :style="{ backgroundImage: `url(${mun.bg_image_url})` }"
                       :class="[
-                        currentMun?.id == mun.id ? 'h-[450px]' : 'h-[400px]',
+                        currentMun?.id == mun.id ? 'h-[400px]' : 'h-[350px]',
                       ]"
                     >
                       <div

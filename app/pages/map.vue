@@ -132,6 +132,39 @@
         @select-site="onSelectSite"
       />
     </ClientOnly>
+    <Dialog :modal="true" :open="introModal">
+      <DialogContent
+        class="overflow-hidden flex p-0 max-h-[600px] md:max-w-[800px] lg:max-w-[900px] bg-green-800"
+        :show-close-button="false"
+      >
+        <div class="p-6 bg-green-800 text-white">
+          <div class="flex justify-between">
+            <div class="flex flex-col basis-1/2">
+              <span class="text-2xl">Province of</span>
+              <h1 class="text-9xl albay-font font-extrabold">Albay</h1>
+            </div>
+            <div class="basis-1/2 text-right pt-6">
+              <p>
+                Albay, originally called Ibalon, has been settled for over 2,000
+                years and had early trade links with China. The province was
+                renamed Albay in 1663 and survived Moro raids and the 1814
+                eruption of Mayon Volcano, which destroyed towns and led to the
+                founding of Legazpi.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <img src="/Albay_Map.png" alt="" class="-mt-16 -ml-10" />
+            <Button
+              @click="introModal = false"
+              class="uppercase font-black border"
+              variant="ghost"
+              >Walk With Me</Button
+            >
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
   </div>
 </template>
 
@@ -208,6 +241,8 @@ const sites = ref<Site[]>([]);
 const selectedMun = ref<Municipality>();
 const supabase = useSupabaseClient();
 
+const introModal = ref(true);
+
 const selectMunicipality = (munId: number) => {
   selectedMun.value = municipalities.find((mun) => mun.id == munId);
 };
@@ -261,4 +296,10 @@ watch(selectedMun, (val) => {
 });
 </script>
 
-<style></style>
+<style>
+.albay-font {
+  font-family: "Bonheur Royale", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>

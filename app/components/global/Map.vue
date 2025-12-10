@@ -274,7 +274,7 @@ watch(
       </div>
       <div
         v-if="selectedSite"
-        class="h-[400px] flex gap-2 bg-white shadow rounded-xl border p-3"
+        class="flex flex-col gap-2 bg-white shadow rounded-3xl border p-3 max-h-[880px]"
       >
         <div class="flex gap-2">
           <Carousel
@@ -288,17 +288,86 @@ watch(
           >
             <CarouselContent class="-mt-1 h-[380px] w-[250px]">
               <CarouselItem
-                v-for="(img, key) in siteImages"
-                :key="key"
+                v-if="selectedSite.site_images.front != ''"
                 class="p-0"
               >
                 <div class="h-full py-1">
                   <div
                     class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
-                    :style="{ backgroundImage: `url(${img})` }"
+                    :style="{
+                      backgroundImage: `url(${selectedSite.site_images.front})`,
+                    }"
                   >
                     <Badge class="capitalize mt-1 mr-1" variant="secondary"
-                      >{{ key }} View</Badge
+                      >Front View</Badge
+                    >
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem
+                v-if="selectedSite.site_images.left != ''"
+                class="p-0"
+              >
+                <div class="h-full py-1">
+                  <div
+                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
+                    :style="{
+                      backgroundImage: `url(${selectedSite.site_images.left})`,
+                    }"
+                  >
+                    <Badge class="capitalize mt-1 mr-1" variant="secondary"
+                      >Left View</Badge
+                    >
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem
+                v-if="selectedSite.site_images.right != ''"
+                class="p-0"
+              >
+                <div class="h-full py-1">
+                  <div
+                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
+                    :style="{
+                      backgroundImage: `url(${selectedSite.site_images.right})`,
+                    }"
+                  >
+                    <Badge class="capitalize mt-1 mr-1" variant="secondary"
+                      >Right View</Badge
+                    >
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem
+                v-if="selectedSite.site_images.rear != ''"
+                class="p-0"
+              >
+                <div class="h-full py-1">
+                  <div
+                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
+                    :style="{
+                      backgroundImage: `url(${selectedSite.site_images.rear})`,
+                    }"
+                  >
+                    <Badge class="capitalize mt-1 mr-1" variant="secondary"
+                      >Rear View</Badge
+                    >
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem
+                v-if="selectedSite.site_images.interior != ''"
+                class="p-0"
+              >
+                <div class="h-full py-1">
+                  <div
+                    class="bg-center bg-cover bg-no-repeat h-full rounded-lg shadow bg-muted flex justify-end items-start"
+                    :style="{
+                      backgroundImage: `url(${selectedSite.site_images.interior})`,
+                    }"
+                  >
+                    <Badge class="capitalize mt-1 mr-1" variant="secondary"
+                      >Interior View</Badge
                     >
                   </div>
                 </div>
@@ -316,9 +385,23 @@ watch(
         </div>
         <div class="w-[300px] overflow-auto">
           <span class="font-semibold">{{ selectedSite.name }}</span>
-          <p class="text-sm font-medium mt-1 text-justify indent-8 p-1">
-            {{ selectedSite.description }}
-          </p>
+          <div class="py-2 px-3 bg-muted rounded-xl border mt-3">
+            <p class="text-sm font-medium text-justify indent-8">
+              {{ selectedSite.description }}
+            </p>
+          </div>
+          <div
+            class="text-sm font-medium py-2 px-3 bg-muted rounded-xl border mt-2"
+          >
+            <span class="font-semibold">Location:</span>
+            {{ selectedSite.location }}
+          </div>
+          <div
+            class="text-sm font-medium py-2 px-3 bg-muted rounded-xl mt-2 border"
+          >
+            <span class="font-semibold">Recognized by:</span>
+            {{ selectedSite.recognized_by }}
+          </div>
         </div>
       </div>
     </div>

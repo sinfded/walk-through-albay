@@ -6,7 +6,7 @@
       <div
         class="absolute inset-0 flex flex-col items-center justify-center z-20 text-center"
       >
-        <transition name="fade" appear>
+        <transition d name="fade" appear>
           <h1 class="text-6xl font-bold text-white uppercase">Walk</h1>
         </transition>
         <transition name="fade" appear>
@@ -33,6 +33,7 @@
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1.5s ease;
+  transition-delay: 1000ms;
 }
 .fade-enter-from,
 .fade-leave-to {
